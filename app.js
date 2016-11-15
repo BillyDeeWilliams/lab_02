@@ -1,15 +1,14 @@
 'use strict';
 //lets make our objects!!!
 var firstAndPike  = {
+  name : '1st and Pike',
   minHourlyCustos : 1,
   maxHourlyCustos: 10,
-  custosPerHr : 0,
   avgPurchaseSize : 6.3,
-  cookiesSoldPerHour : 0,
+  dailyTotal: 0,
   hours: 15,
-  cookiesSoldPerDay : 0,
   storeHours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm' ],
-  hoursOpen: function () {
+  setHoursOpen: function () {
     this.hours = this.storeHours.length;
   },
   salesRecord: [],
@@ -28,19 +27,21 @@ var firstAndPike  = {
 
   populateSalesData : function () {
     var salesthathour;
-    var hoursOpen = this.hours;
+    var dailyCookiesCount = this.dailyTotal; // init sum var
+    var hoursOpen = this.hours; // double check
     for (var i = 0 ; i < hoursOpen ; i++){ //each time for as many times as there are hours listed in the hors open array
       this.setCustosPerHr(); // set the number of custos that hour
       salesthathour = this.custosPerHr * this.avgPurchaseSize; // calculate sales for that hour
       this.salesRecord[i] = salesthathour;
     }
-    console.log('sales record for' + this + ' looks like this now: ' + this.salesRecord);
+    console.log('sales record for ' + this.name + ' looks like this now: ' + this.salesRecord);
+    //sales data populated and ready to be summed
     for (var k = 0 ; k < this.salesRecord; k++ ){
-      var sumTotal = 0;
-      sumTotal = sumTotal + this.salesRecord[k]
+      dailyCookiesCount += this.salesRecord[k];
+
     }
-    console.log('sumTotal: ' + sumTotal);
-    this.cookiesSoldPerDay = sumTotal;
+    console.log('dailyCookiesCount: ' + dailyCookiesCount );
+
   },
   listHours: function() {
     var contentArea = document.getElementById('content_area');
@@ -68,7 +69,7 @@ var firstAndPike  = {
       salesData = document.createElement('li');
       salesData.textContent = this.salesRecord[i];
       salesDataList.appendChild(salesData);
-    }
+    };
 
     contentArea.appendChild(salesDataList);
   }
