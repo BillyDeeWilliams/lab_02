@@ -34,13 +34,13 @@ var firstAndPike  = {
       salesthathour = this.custosPerHr * this.avgPurchaseSize; // calculate sales for that hour
       this.salesRecord[i] = salesthathour;
     }
-    console.log(this.salesRecord);
+    console.log('sales record for' + this + ' looks like this now: ' + this.salesRecord);
     for (var k = 0 ; k < this.salesRecord; k++ ){
       var sumTotal = 0;
       sumTotal = sumTotal + this.salesRecord[k]
     }
     console.log('sumTotal: ' + sumTotal);
-    this.
+    this.cookiesSoldPerDay = sumTotal;
   },
   listHours: function() {
     var contentArea = document.getElementById('content_area');
