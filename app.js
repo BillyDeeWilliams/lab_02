@@ -27,20 +27,16 @@ var firstAndPike  = {
 
   populateSalesData : function () {
     var salesthathour;
-    var dailyCookiesCount = this.dailyTotal; // init sum var
     var hoursOpen = this.hours; // double check
     for (var i = 0 ; i < hoursOpen ; i++){ //each time for as many times as there are hours listed in the hors open array
       this.setCustosPerHr(); // set the number of custos that hour
       salesthathour = this.custosPerHr * this.avgPurchaseSize; // calculate sales for that hour
       this.salesRecord[i] = salesthathour;
+      this.dailyTotal += this.salesRecord[i];
     }
     console.log('sales record for ' + this.name + ' looks like this now: ' + this.salesRecord);
-    //sales data populated and ready to be summed
-    for (var k = 0 ; k < this.salesRecord; k++ ){
-      dailyCookiesCount += this.salesRecord[k];
 
-    }
-    console.log('dailyCookiesCount: ' + dailyCookiesCount );
+    console.log('dailyCookiesCount: ' + this.dailyTotal );
 
   },
   listHours: function() {
