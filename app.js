@@ -1,13 +1,16 @@
 'use strict';
 //lets make our objects!!!
-var hotelOne = {
+var firstAndPike  = {
   minHourlsCustos : 1,
   maxHourlyCustos: 10,
   custosPerHr : 0,
   avgPurchaseSize : 3.4,
   cookiesSoldPerHour : 0,
+  hours: 15,
   storeHours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm' ],
-  hoursOpen: this.storehours.lengh,
+  hoursOpen: function () {
+    this.hours = this.storeHours.length;
+  },
   salesRecord: [],
 
   getRandomIntWithinStoreVarrience : function () { //generate a dandom number within the store varrience
