@@ -11,29 +11,30 @@ function renderHeaderRow(){
   var totalTableheader = document.createElement('th');
   var hourlyTableheader;
 
-  tableRow.appendChild(blankTableHeader); // insert black cell
+  headerRow.appendChild(blankTableHeader); // insert blanck cell in the beginngin of header row
 
   for(var i = 0; i < hours.length; i++){
     hourlyTableheader = document.createElement('th');
     hourlyTableheader.textContent = hours[i];
-    tableRow.appendChild(hourlyTableheader);
+    headerRow.appendChild(hourlyTableheader);
   }
   totalTableheader.textContent = 'Total';
-  tableRow.appendChild(totalTableheader);
+  headerRow.appendChild(totalTableheader);
 
   storeTable.appendChild(headerRow);
 }
+
 renderHeaderRow();
 
-
-function CookieStore (newStoreObject) {
+// cooke store constructor:
+function CookieStore (newStoreObject, min, max) {
   this.name = newStoreObject;
-
-
-
+  this.hourlymincustos = min;
+  this.hourlymaxcustos = max;
 }
 
-var pike = new CookieStore('pike'); //creates a new instance of CookieStore
+
+var pike = new CookieStore('pike', 1 , 10); //creates a new instance of CookieStore
 
 CookieStore.prototype.logOutName = function () {
   console.log(this.name);
