@@ -1,10 +1,10 @@
 'use strict';
 //lets make our objects!!!
 var firstAndPike  = {
-  minHourlsCustos : 1,
+  minHourlyCustos : 1,
   maxHourlyCustos: 10,
   custosPerHr : 0,
-  avgPurchaseSize : 3.4,
+  avgPurchaseSize : 6.3,
   cookiesSoldPerHour : 0,
   hours: 15,
   storeHours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm' ],
@@ -13,25 +13,23 @@ var firstAndPike  = {
   },
   salesRecord: [],
 
-  getRandomIntWithinStoreVarrience : function () { //generate a dandom number within the store varrience
-    min = Math.ceil(this.minHourlsCustos);
-    max = Math.floor(this.maxHourlyCustos);
+  getRandom: function () { //generate a dandom number within the store varrience
+    var min = Math.ceil(this.minHourlyCustos);
+    var max = Math.floor(this.maxHourlyCustos);
     return Math.floor(Math.random() * (max - min)) + min;
   },
-  setCutosPerHr: function () {
+
+  setCustosPerHr: function () {
     var x;
-    x = getRandomIntWithinStoreVarrience(); //keep an eye here, does it know to call this method on itself if i dont say so here if it says so in the method i am calling?
+    x = this.getRandom(); //keep an eye here, does it know to call this method on itself if i dont say so here if it says so in the method i am calling?
     this.custosPerHr = x ; //generates a random number of customers within the store varrienc and stores in the objects key for that value
   },
-  setCookiesSoldPerHour: function () {
-    var y;
-    y = 0; // set to zero for now
-    this.cookiesSoldPerHour = y;
-  },
+
   populateSalesData : function () {
     var salesthathour;
-    for ( i = 0 ; i < hoursOpen ; i++){ //each time for as many times as there are hours listed in the hors open array
-      this.setCutosPerHr; // set the number of custos that hour
+    var hoursOpen = this.hours;
+    for (var i = 0 ; i < hoursOpen ; i++){ //each time for as many times as there are hours listed in the hors open array
+      this.setCustosPerHr(); // set the number of custos that hour
       salesthathour = this.custosPerHr * this.avgPurchaseSize; // calculate sales for that hour
       this.salesRecord[i] = salesthathour;
     }
@@ -54,6 +52,7 @@ var firstAndPike  = {
   },
 
   listSalesData: function (){
+    this.populateSalesData();
     var contentArea = document.getElementById('content_area');
     var salesDataList = document.createElement('ul');
     var salesData;
