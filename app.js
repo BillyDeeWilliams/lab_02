@@ -31,12 +31,13 @@ var firstAndPike  = {
     for (var i = 0 ; i < hoursOpen ; i++){ //each time for as many times as there are hours listed in the hors open array
       this.setCustosPerHr(); // set the number of custos that hour
       salesthathour = this.custosPerHr * this.avgPurchaseSize; // calculate sales for that hour
-      this.salesRecord[i] = salesthathour;
+      this.salesRecord[i] = Math.ceil(salesthathour); //round up so we charge full price for factions of cookies
       this.dailyTotal += this.salesRecord[i];
     }
     console.log('sales record for ' + this.name + ' looks like this now: ' + this.salesRecord);
 
     console.log('dailyCookiesCount: ' + this.dailyTotal );
+    salesRecord.push(this.dailyTotal); //add the daily total to the end of the  sales data array
 
   },
   listHours: function() {
