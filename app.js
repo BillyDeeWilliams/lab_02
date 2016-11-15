@@ -7,6 +7,7 @@ var firstAndPike  = {
   avgPurchaseSize : 6.3,
   cookiesSoldPerHour : 0,
   hours: 15,
+  cookiesSoldPerDay : 0,
   storeHours: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm' ],
   hoursOpen: function () {
     this.hours = this.storeHours.length;
@@ -21,7 +22,7 @@ var firstAndPike  = {
 
   setCustosPerHr: function () {
     var x;
-    x = this.getRandom(); //keep an eye here, does it know to call this method on itself if i dont say so here if it says so in the method i am calling?
+    x = this.getRandom();
     this.custosPerHr = x ; //generates a random number of customers within the store varrienc and stores in the objects key for that value
   },
 
@@ -34,10 +35,16 @@ var firstAndPike  = {
       this.salesRecord[i] = salesthathour;
     }
     console.log(this.salesRecord);
+    for (var k = 0 ; k < this.salesRecord; k++ ){
+      var sumTotal = 0;
+      sumTotal = sumTotal + this.salesRecord[k]
+    }
+    console.log('sumTotal: ' + sumTotal);
+    this.
   },
   listHours: function() {
     var contentArea = document.getElementById('content_area');
-    var ul = document.createElement('ul'); //create a node for and unorderlist containing the tag for ul and a variable that refers to that node named ul
+    var ul = document.createElement('ul'); //crea1te a node for and unorderlist containing the tag for ul and a variable that refers to that node named ul
     var li; //names a variable li
 
   //for as many times as there are items in the list of hours open do this:
