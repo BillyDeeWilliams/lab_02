@@ -30,32 +30,34 @@ var pike  = {
     for (var i = 1 ; i < hoursOpen.length ; i++){ //each time for as many times as there are hours listed in the hors open array
       this.setCustosPerHr(); // set the number of custos that hour
       salesthathour = this.custosPerHr * this.avgPurchaseSize; // calculate sales for that hour
-      this.salesRecord[i] = ' ' + hoursOpen[i - 1] + ' ' + Math.ceil(salesthathour); //round up so we charge full price for factions of cookies
+      this.salesRecord[i] = ' ' + hoursOpen[i - 1] + ': ' + Math.ceil(salesthathour) + ' cookies'; //round up so we charge full price for factions of cookies
       this.dailyTotal += salesthathour;
     }
-    this.salesRecord.push(this.dailyTotal); //add the daily total to the end of the  sales data array
-
+    this.dailyTotal = Math.ceil(this.dailyTotal); //round up because we dont sell fractions of cookies
+    this.salesRecord.push('Total: ' + this.dailyTotal); //add the daily total to the end of the  sales data array
 
     console.log('sales record for ' + this.name + ' looks like this now: ' + this.salesRecord);
-
     console.log('dailyCookiesCount: ' + this.dailyTotal );
 
 
   },
   listHours: function() {
     var contentArea = document.getElementById('content_area');
-    var ul = document.createElement('ul'); //crea1te a node for and unorderlist containing the tag for ul and a variable that refers to that node named ul
-    var li; //names a variable li
-
+    var list = document.createElement('ul'); //crea1te a node for and unorderlist containing the tag for ul and a variable that refers to that node named ul
+    var listItem; //names a variable li
+    var listHeader;
+    listHeader = document.createElement('li'); //listheader gets a new list item node
+    listHeader.textContent = this.salesRecord[0]; //takes fist element which should be the name and puts is in the a variable called listheader
+    list.appendChild(listHeader);  //appends listheader inside on list
   //for as many times as there are items in the list of hours open do this:
-    for (var i = 0; i < this.storeHours.length; i++) {
-      li = document.createElement('li');
-        //create a node with content content of an <li> element and point the var li at it
-        //set whatever li is pointing at with the content from the corrsponding element in the array storehours that belongs this this object
-      li.textContent = this.storeHours[i];
-      ul.appendChild(li); //append the node we are callling ul with a new child element within it that is what the variable we call li is pointing at
+    for (var i = 1; i < this.salesRecord.length; i++) {
+      listItem = document.createElement('li');
+        //create a node with content content of an <li> element and point the var listItem at it
+        //set whatever listItem is pointing at with the content from the corrsponding element in the array salesData that belongs this this object
+      listItem.textContent = this.salesRecord[i];
+      list.appendChild(listItem); //append the node we are callling list with a new child element within it that is what the variable we call listItem is pointing at
     }
-    contentArea.appendChild(ul); //append the node that the varriable we call content area is pointing to, in this case the element with the id area content as sel on line 30
+    contentArea.appendChild(list); //append the node that the varriable we call content area is pointing to, in this case the element with the id area content as sel on line 30
   },
 
   listSalesData: function (){
@@ -64,7 +66,7 @@ var pike  = {
     var salesDataList = document.createElement('ul');
     var salesData;
 
-    for( var i = 0; i < this.storeHours.length; i++){
+    for( var i = 0; i < this.salesRecord.length; i++){
       salesData = document.createElement('li');
       salesData.textContent = this.salesRecord[i];
       salesDataList.appendChild(salesData);
