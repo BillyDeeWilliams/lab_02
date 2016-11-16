@@ -1,6 +1,6 @@
 'use strict';
 //lets make our objects!!!
-var firstAndPike  = {
+var pike  = {
   name : '1st and Pike',
   minHourlyCustos : 1,
   maxHourlyCustos: 10,
@@ -13,16 +13,12 @@ var firstAndPike  = {
   },
   salesRecord: [],
 
-  getRandom: function () { //generate a dandom number within the store varrience
+  setCustosPerHr: function () { //in case we ever want to change how we estimate customers or want to run more controlled simulations to generate predictions
+    var custoEstimate;
     var min = Math.ceil(this.minHourlyCustos);
     var max = Math.floor(this.maxHourlyCustos);
-    return Math.floor(Math.random() * (max - min)) + min;
-  },
-
-  setCustosPerHr: function () {
-    var x;
-    x = this.getRandom();
-    this.custosPerHr = x ; //generates a random number of customers within the store varrienc and stores in the objects key for that value
+    custoEstimate = Math.floor(Math.random() * (max - min)) + min;
+    this.custosPerHr = custoEstimate ; //generates a random number of customers within the store varrienc
   },
 
   populateSalesData : function () {
