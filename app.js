@@ -264,7 +264,7 @@ var alki = {
       this.dailyTotal += salesthathour;
     }
     this.dailyTotal = Math.ceil(this.dailyTotal);
-    this.salesRecord.push('Total: ' + this.dailyTotal);
+    this.salesRecord.push('Total: ' + this.dailyTotal + ' cookies');
   },
 
   listSalesData: function (){
@@ -285,3 +285,8 @@ var alki = {
   },
 
 };
+pike.listSalesData();
+seaTac.listSalesData();
+seattleCenter.listSalesData();
+capHill.listSalesData();
+alki.listSalesData();
