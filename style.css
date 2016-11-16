@@ -1,0 +1,27 @@
+ul {
+list-style-type: circle;
+font-family: sans-serif;
+font-size: 11pt;
+}
+
+li{
+
+  padding: 5
+}
+
+p{
+  font-family: sans-serif;
+  font-size: 11pt;
+}
+body{
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+}
+
+#center{
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
