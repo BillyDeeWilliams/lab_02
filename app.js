@@ -34,6 +34,22 @@ SalmonStore.prototype.populateSalesData = function (){
   this.salesRecord.push('Total: ' + this.dailyTotal);
 };
 
+SalmonStore.prototype.listSalesData = function(){
+  this.populateSalesData();
+  var contentArea = document.getElementById('content_area');
+  var listTitle = document.createElement('p');
+  var salesDataList = document.createElement('ul');
+  var salesData;
+  listTitle.textContent = this.salesRecord[0];
+  contentArea.appendChild(listTitle);
+  for (var i = 1; i < this.salesRecord.length; i++){
+    salesData = document.createElement('li');
+    salesData.textContent = salesData[i];
+    salesDataList.appendChild(salesData);
+  }
+  contentArea.appendChild(salesDataList);
+};
+
 var pike  = {
   name : '1st and Pike',
   minHourlyCustos : 23,
