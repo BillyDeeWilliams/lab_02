@@ -41,32 +41,18 @@ var pike  = {
 
 
   },
-  listHours: function() {
-    var contentArea = document.getElementById('content_area');
-    var list = document.createElement('ul'); //crea1te a node for and unorderlist containing the tag for ul and a variable that refers to that node named ul
-    var listItem; //names a variable li
-    var listHeader;
-    listHeader = document.createElement('li'); //listheader gets a new list item node
-    listHeader.textContent = this.salesRecord[0]; //takes fist element which should be the name and puts is in the a variable called listheader
-    list.appendChild(listHeader);  //appends listheader inside on list
-  //for as many times as there are items in the list of hours open do this:
-    for (var i = 1; i < this.salesRecord.length; i++) {
-      listItem = document.createElement('li');
-        //create a node with content content of an <li> element and point the var listItem at it
-        //set whatever listItem is pointing at with the content from the corrsponding element in the array salesData that belongs this this object
-      listItem.textContent = this.salesRecord[i];
-      list.appendChild(listItem); //append the node we are callling list with a new child element within it that is what the variable we call listItem is pointing at
-    }
-    contentArea.appendChild(list); //append the node that the varriable we call content area is pointing to, in this case the element with the id area content as sel on line 30
-  },
 
   listSalesData: function (){
     this.populateSalesData();
     var contentArea = document.getElementById('content_area');
+    var listTitle = document.createElement('p');
     var salesDataList = document.createElement('ul');
     var salesData;
 
-    for( var i = 0; i < this.salesRecord.length; i++){
+    listTitle.textContent = this.salesRecord[0]; // puts the firat element in the array, in this case the store naame in a *p tag to use as a header
+    contentArea.appendChild(listTitle);
+
+    for( var i = 1; i < this.salesRecord.length; i++){
       salesData = document.createElement('li');
       salesData.textContent = this.salesRecord[i];
       salesDataList.appendChild(salesData);
