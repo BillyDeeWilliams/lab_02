@@ -4,7 +4,15 @@ font-family: sans-serif;
 font-size: 11pt;
 }
 th{
-  border:aliceblue solid 3px;
+  border:aliceblue solid 2px;
+}
+td{
+  color:white;
+  border: white solid 2px;
+}
+tbody{
+  color:white;
+  border: white solid 2px;
 }
 li{
 

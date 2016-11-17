@@ -31,6 +31,21 @@ SalmonStore.prototype.populateSalesData = function (){
   for ( var i = 1 ; i < this.storeHours.length; i ++){
     this.setCustosPerHr();
     salesthathour = this.custosPerHr * this.avgPurchaseSize;
+    this.salesRecord[i] = Math.ceil(salesthathour) + ' cookies';
+    this.dailyTotal += salesthathour;
+  };
+  this.dailyTotal = Math.ceil(this.dailyTotal);
+  this.salesRecord.push('Total: ' + this.dailyTotal + ' cookies');
+};
+
+SalmonStore.prototype.populateSalesDataList = function (){
+  var salesthathour;
+  this.salesRecord = [];
+  this.dailyTotal = 0;
+  this.salesRecord.push(this.name);
+  for ( var i = 1 ; i < this.storeHours.length; i ++){
+    this.setCustosPerHr();
+    salesthathour = this.custosPerHr * this.avgPurchaseSize;
     this.salesRecord[i] = ' ' + this.storeHours[i - 1] + ': ' + Math.ceil(salesthathour) + ' cookies';
     this.dailyTotal += salesthathour;
   };
@@ -39,7 +54,7 @@ SalmonStore.prototype.populateSalesData = function (){
 };
 
 SalmonStore.prototype.listSalesData = function(){
-  this.populateSalesData();
+  this.populateSalesDataList();
   var contentArea = document.getElementById('content_area');
   var listTitle = document.createElement('p');
   var salesDataList = document.createElement('ul');
@@ -60,27 +75,53 @@ SalmonStore.prototype.headerToHTML = function () {
   var table = document.getElementById('dynamic');
   var tableRow = document.createElement('tr');
   var blankHeaderCell = document.createElement('th');
-
-
+  var tableHeaderCell;
   blankHeaderCell.textContent = '';
   tableRow.appendChild(blankHeaderCell); // first cell is blank
-
   //populate header loop
   for( var i = 0; i < this.storeHours.length; i++){
-
-    var tableHeaderCell = document.createElement('th'); // create a new table header cell
+    tableHeaderCell = document.createElement('th'); // create a new table header cell
     tableHeaderCell.textContent = this.storeHours[i]; // populate the cell
     tableRow.appendChild(tableHeaderCell); //build row by appending th cells containing values from store hours
-    table.appendChild(tableRow); // append row into table
   }
-
+  table.appendChild(tableRow); // append row into table
 };
-//build next row cell by cell
-//append table row by row
 
+SalmonStore.prototype.generateStoreDataTableRow = function() {
+  var table = document.getElementById('dynamic'); //get table
+  var tbody = document.createElement('tbody'); //creat tablebody tbody
+  var rows = document.createElement('tr'); //create row
+  // var tableHeaderCell;
+  // for( var i = 0; i < this.storeHours.length; i++){
+  //   tableHeaderCell = document.createElement('th'); // create a new table header cell
+  var td;
+  this.populateSalesData(); // generates data to publish
+  td = document.createElement('td'); // first elemetn in sales record array should be the store name, so we put this in first cell for the row
+  td.textContent = this.salesRecord[0];
+  rows.appendChild(td);
+  if(this.salesRecord.length < 2){
+    alert('insuficient data to generate table \n please populate sales record first');
+  }
+  else {
+    for( var i = 1 ; i < this.salesRecord.length; i++){ // starting at the second element in the sales data array, for as many times as there are leements remaining do this:
+      td = document.createElement('td');
+      td.textContent = this.salesRecord[i];
+      rows.appendChild(td);
+    }
+    tbody.appendChild(rows);
+    table.appendChild(tbody);
+  }
+};
 
-
-
+//identify table body
+// populate tr row td cell by td cell
+// append table body with row
+//
+//later we will use the body to access the value of the cells in each column *not counting the first header row or last (totals) row
+//
+//now we need to create instances of our stores and then call their row generatin methods to produce our table
+//then we will stype appropriately with CSS
+//finaly we will add a form where upon field containing the necessary property information may be submited to generate a new store or change store data and the row generating call will update in real time
 
 
 
