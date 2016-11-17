@@ -71,7 +71,7 @@ SalmonStore.prototype.listSalesData = function(){
 };
 
 SalmonStore.prototype.headerToHTML = function () {
-  var table = document.getElementById('dynamic');
+  var table = document.getElementById('salmon_table');
   var tableRow = document.createElement('tr');
   var blankHeaderCell = document.createElement('th');
   var tableHeaderCell;
@@ -94,7 +94,7 @@ SalmonStore.prototype.headerToHTML = function () {
 };
 
 SalmonStore.prototype.generateStoreDataTableRow = function() {
-  var table = document.getElementById('dynamic'); //get table
+  var table = document.getElementById('salmon_table'); //get table
   var tbody = document.createElement('tbody'); //creat tablebody tbody
   var rows = document.createElement('tr'); //create row
   // var tableHeaderCell;
@@ -140,7 +140,8 @@ var seattleCenter = new SalmonStore('Seattle Center', 11 , 38, 3.7);
 var capHill  = new SalmonStore('Capitol Hill', 20, 38, 2.3);
 var alki = new SalmonStore('Alki', 2, 16, 4.6);
 
-//later we can maeke these calls happen individually as we want, for now they are hoard coded into the following function
+//later we can maeke similar happen individually as we want, or trigger then with a listener.
+// for now they are hoard coded into the following function
 function generateStoreTable() {
   pike.headerToHTML();
   pike.generateStoreDataTableRow();
@@ -151,6 +152,8 @@ function generateStoreTable() {
 }
 
 generateStoreTable();
+//first table with urrent data is generated. a form is available below the table for input to change data
+//or create new instances of stares and then populate the table acordingly
 //=======================================================================================================================================================//
 //KVN structure convention
 //above is good, blow is under construction
@@ -158,3 +161,15 @@ generateStoreTable();
 
 
 //lets use bottons to call our HTML generation
+var salmonForm = document.getElementById('salmon_form');
+salmonForm.addEventListener('submit', handleForm);
+//salmonForm point at the form we're working with. then we add an evenlistener to call handleform when triggered by submit
+//defin the handle function belwo and apass it a named event argument so we can refer to the properties of the event in real time
+function handleForm (event){
+  event.preventDefault();
+
+  var salmonTable = document.getElementById('salmonTable');{
+
+  }
+
+}
