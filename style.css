@@ -3,6 +3,9 @@ list-style-type: circle;
 font-family: sans-serif;
 font-size: 11pt;
 }
+h1{
+  border-bottom:white solid 1px;
+}
 th{
   border:aliceblue solid 2px;
 }
