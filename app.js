@@ -146,7 +146,7 @@ var seaTac  = {
     }
     this.dailyTotal = Math.ceil(this.dailyTotal); //round up because we dont sell fractions of cookies
 
-    this.salesRecord.push('Total: ' + this.dailyTotal); //add the daily total to the end of the  sales data array
+    this.salesRecord.push('Total: ' + this.dailyTotal + ' cookies'); //add the daily total to the end of the  sales data array
   },
 
   listSalesData: function (){
