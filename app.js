@@ -75,18 +75,22 @@ SalmonStore.prototype.headerToHTML = function () {
   var tableRow = document.createElement('tr');
   var blankHeaderCell = document.createElement('th');
   var tableHeaderCell;
+
   blankHeaderCell.textContent = '';
   tableRow.appendChild(blankHeaderCell); // first cell is blank
+
   //populate header loop
   for( var i = 0; i < (this.storeHours.length - 1); i++){
     tableHeaderCell = document.createElement('th'); // create a new table header cell
     tableHeaderCell.textContent = this.storeHours[i]; // populate the cell
     tableRow.appendChild(tableHeaderCell); //build row by appending th cells containing values from store hours
   }
+
   tableHeaderCell = document.createElement('th');
   tableHeaderCell.textContent = 'Daild Location Total';
   tableRow.appendChild(tableHeaderCell); // last column heading in header row
   table.appendChild(tableRow); // append row into table
+
 };
 
 SalmonStore.prototype.generateStoreDataTableRow = function() {
@@ -105,7 +109,8 @@ SalmonStore.prototype.generateStoreDataTableRow = function() {
     alert('insuficient data to generate table \n please populate sales record first');
   }
   else {
-    for( var i = 1 ; i < this.salesRecord.length; i++){ // starting at the second element in the sales data array, for as many times as there are leements remaining do this:
+    for( var i = 1 ; i < this.salesRecord.length; i++){
+    // starting at the second element in the sales data array, for as many times as there are leements remaining do this:
       td = document.createElement('td');
       td.textContent = this.salesRecord[i];
       rows.appendChild(td);
@@ -126,7 +131,8 @@ SalmonStore.prototype.lastRow = function(){
 
 //now we need to create instances of our stores and then call their row generatin methods to produce our table
 //then we will stype appropriately with CSS
-//finaly we will add a form where upon field containing the necessary property information may be submited to generate a new store or change store data and the row generating call will update in real time
+//finaly we will add a form where upon field containing the necessary property information may be submited to
+//generate a new store or change store data and the row generating call will update in real time
 
 var pike = new SalmonStore ('1st and Pike', 23, 65, 6.3);
 var seaTac = new SalmonStore('SeaTac Airport', 3, 24, 1.2);
@@ -145,3 +151,10 @@ function generateStoreTable() {
 }
 
 generateStoreTable();
+//=======================================================================================================================================================//
+//KVN structure convention
+//above is good, blow is under construction
+//======================================================================================================================================================//
+
+
+//lets use bottons to call our HTML generation
