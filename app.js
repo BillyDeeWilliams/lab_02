@@ -1,6 +1,6 @@
 'use strict';
 // Lets make a Constructor robot for them there objects
-function SalmonStore (name, min, max, avgSale) {
+function SalmonStore ( name, min, max, avgSale) {
   this.name = name;
   this.minHourlyCustos = min;
   this.maxHourlyCustos = max;
@@ -8,8 +8,12 @@ function SalmonStore (name, min, max, avgSale) {
   this.dailyTotal = 0;
   this.hours = 15;
   this.storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm' ];
-
+  this.salesRecord = [];
+  this.custosPerHr = 0;
 }
+SalmonStore.prototype.hourstOpen = function (){
+  this.hours = this.storeHours.length;
+};
 
 SalmonStore.prototype.setCustosPerHr = function () {
   var custoEstimate;
@@ -24,14 +28,14 @@ SalmonStore.prototype.populateSalesData = function (){
   this.salesRecord = [];
   this.dailyTotal = 0;
   this.salesRecord.push(this.name);
-  for ( var i = 0 ; i < this.storeHours.length; i ++){
+  for ( var i = 1 ; i < this.storeHours.length; i ++){
     this.setCustosPerHr();
     salesthathour = this.custosPerHr * this.avgPurchaseSize;
     this.salesRecord[i] = ' ' + this.storeHours[i - 1] + ': ' + Math.ceil(salesthathour) + ' cookies';
     this.dailyTotal += salesthathour;
   };
   this.dailyTotal = Math.ceil(this.dailyTotal);
-  this.salesRecord.push('Total: ' + this.dailyTotal);
+  this.salesRecord.push('Total: ' + this.dailyTotal + ' cookies');
 };
 
 SalmonStore.prototype.listSalesData = function(){
@@ -41,14 +45,16 @@ SalmonStore.prototype.listSalesData = function(){
   var salesDataList = document.createElement('ul');
   var salesData;
   listTitle.textContent = this.salesRecord[0];
+  // listTitle.id = 'test'; this will set the id of the node so cool!!!
   contentArea.appendChild(listTitle);
   for (var i = 1; i < this.salesRecord.length; i++){
     salesData = document.createElement('li');
-    salesData.textContent = salesData[i];
+    salesData.textContent = this.salesRecord[i];
     salesDataList.appendChild(salesData);
   }
   contentArea.appendChild(salesDataList);
 };
+
 
 
 
@@ -131,7 +137,7 @@ SalmonStore.prototype.listSalesData = function(){
 //   }
 //
 // };
-//
+
 // var seaTac  = {
 //   name : 'SeaTac Airport ',
 //   minHourlyCustos : 3,
