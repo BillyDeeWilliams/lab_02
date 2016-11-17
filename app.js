@@ -56,7 +56,32 @@ SalmonStore.prototype.listSalesData = function(){
 };
 
 
+SalmonStore.prototype.toHTML = function () {
+  var table = document.getElementById('dynamic_table');
+  var tableRow = document.createElement('tr');
+  var tableHeaderCell = document.createElement('th'); // hours open will be the header
+  var totalTabledata = document.createElement('td');
+  var blankCell = document.createElement('td');
+  var hourlyTableData;
 
+  blankCell.textContent = '';
+  tableRow.appendChild(blankCell); // first cell is blank
+
+  //populate header loop
+  for( var i = 0; i < this.storeHours.length; i++){
+    tableHeaderCell.textContent = this.storeHours[i];
+    tableRow.appendChild(tableHeaderCell); //build row of cells containing hours
+    table.appendChild(tableRow); // append row into table
+  }
+//build next row cell by cell
+//append table with row
+  totalTabledata.textContent = 15;
+
+  tableRow.appendChild(totalTabledata);
+
+  table.appendChild(tableRow);
+
+};
 
 
 
