@@ -56,32 +56,27 @@ SalmonStore.prototype.listSalesData = function(){
 };
 
 
-SalmonStore.prototype.toHTML = function () {
-  var table = document.getElementById('dynamic_table');
+SalmonStore.prototype.headerToHTML = function () {
+  var table = document.getElementById('dynamic');
   var tableRow = document.createElement('tr');
-  var tableHeaderCell = document.createElement('th'); // hours open will be the header
-  var totalTabledata = document.createElement('td');
-  var blankCell = document.createElement('td');
-  var hourlyTableData;
+  var blankHeaderCell = document.createElement('th');
 
-  blankCell.textContent = '';
-  tableRow.appendChild(blankCell); // first cell is blank
+
+  blankHeaderCell.textContent = '';
+  tableRow.appendChild(blankHeaderCell); // first cell is blank
 
   //populate header loop
   for( var i = 0; i < this.storeHours.length; i++){
-    tableHeaderCell.textContent = this.storeHours[i];
-    tableRow.appendChild(tableHeaderCell); //build row of cells containing hours
+
+    var tableHeaderCell = document.createElement('th'); // create a new table header cell
+    tableHeaderCell.textContent = this.storeHours[i]; // populate the cell
+    tableRow.appendChild(tableHeaderCell); //build row by appending th cells containing values from store hours
     table.appendChild(tableRow); // append row into table
   }
-//build next row cell by cell
-//append table with row
-  totalTabledata.textContent = 15;
-
-  tableRow.appendChild(totalTabledata);
-
-  table.appendChild(tableRow);
 
 };
+//build next row cell by cell
+//append table row by row
 
 
 
