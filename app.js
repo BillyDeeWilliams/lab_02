@@ -37,7 +37,7 @@ SalmonStore.prototype.populateSalesData = function (){
   for ( var i = 1 ; i <= this.storeHours.length; i ++){
     this.setCustosPerHr();
     salesthathour = this.custosPerHr * this.avgPurchaseSize;
-    this.salesRecord[i] = Math.ceil(salesthathour) + ' cookies';
+    this.salesRecord[i] = Math.ceil(salesthathour);
     this.dailyTotal += salesthathour;
   };
   this.dailyTotal = Math.ceil(this.dailyTotal);
@@ -118,7 +118,7 @@ SalmonStore.prototype.generateStoreDataTableRow = function() {
     for( var i = 1 ; i <= this.salesRecord.length - 1 ; i++){
     // starting at the second element in the sales data array, for as many times as there are leements remaining do this:
       td = document.createElement('td');
-      td.textContent = this.salesRecord[i];
+      td.textContent = this.salesRecord[i] + ' cookies';
       rows.appendChild(td);
     }
     tbody.appendChild(rows);
@@ -175,6 +175,7 @@ salmonForm.addEventListener('submit', handleForm);
 
 function buildHeader () {
   var table = document.getElementById('salmon_table');
+  var tableHeader = document.createElement('thead');
   var tableRow = document.createElement('tr');
   var blankHeaderCell = document.createElement('th');
   var tableHeaderCell;
@@ -182,7 +183,7 @@ function buildHeader () {
   blankHeaderCell.textContent = ''; // first cell is blank
   tableRow.appendChild(blankHeaderCell);   //populate header loop
 
-  for( var i = 0; i < (hours - 1); i++){ //loop through all bur the first element
+  for( var i = 0; i < hours ; i++){ //loop through all bur the first element
     tableHeaderCell = document.createElement('th'); // create a new table header cell
     tableHeaderCell.textContent = storeHours[i]; // populate the cell
     tableRow.appendChild(tableHeaderCell); //build row by appending th cells containing values from store hours
@@ -191,7 +192,8 @@ function buildHeader () {
   tableHeaderCell = document.createElement('th');
   tableHeaderCell.textContent = 'Daily Location Total';
   tableRow.appendChild(tableHeaderCell); // last column heading in header row
-  table.appendChild(tableRow); // append row into table
+  tableHeader.appendChild(tableRow); // append entrie row into table header section
+  table.appendChild(tableHeader); // append row into table
 
 }
 
@@ -202,12 +204,39 @@ function bodyBuilder (){
   }
 }
 
-function handleForm (event){
 
-  event.preventDefault();
+
+function buildFooter(){
   var salmonTable = document.getElementById('salmon_table');
+  var salmonFooter = document.createElement('tfoot');
+  var salmonRow = document.createElement('tr');
+  var footerCell = document.createElement('td');
+  var hourlyTotal;
+  footerCell.textContent = ' Totals ';
+  salmonRow.appendChild(footerCell); // first cell in fotter contains text saying "totals"
 
+  for (var i = 0 ; i < hours ; i++){// there are 15 columns, 15 hour values for each one:
+    hourlyTotal = 0; //init count
+    for (var j = 0; j < collectionofStores.length ; j++){ //for as many stores as ther are rows for
+      hourlyTotal += collectionofStores[j].salesRecord[i + 1]; //sum column
+    }
+    footerCell = document.createElement('td');
+    footerCell.textContent = hourlyTotal; //store column sum in td cell
+    console.log(footerCell , hourlyTotal);
+    salmonRow.appendChild(footerCell); // append footer row with a data cell at a time
+
+  }
+
+  salmonFooter.appendChild(salmonRow);
+  salmonTable.appendChild(salmonFooter);
+}
+function handleForm (event){
+  event.preventDefault();
+
+  var salmonTable = document.getElementById('salmon_table');
   salmonTable.textContent = ''; //clears table
+
   buildHeader(); // calls build header unction and build the header.
   bodyBuilder(); //builds a row fore each store Object in the collection of stores array
+  buildFooter();
 }
