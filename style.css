@@ -1,46 +1,63 @@
-ul {
-list-style-type: circle;
-font-family: sans-serif;
-font-size: 11pt;
-}
-h1{
-  border-bottom:white solid 1px;
-}
-th{
-  border:aliceblue solid 2px;
-}
-td{
-  color:white;
-  border: white solid 2px;
-}
-tbody{
-  color:white;
-  border: white solid 2px;
-}
-li{
-
-  padding: 5
+nav ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 16px;
+   overflow: hidden;
+   background-color: #333333;
 }
 
-p{
-  font-family: sans-serif;
-  font-size: 11pt;
+nav li {
+   float: left;
+
 }
+
+nav li a {
+   display: inline;
+   color: white;
+   text-align: center;
+   padding: 16px;
+   text-decoration: none;
+}
+
+nav li a:hover {
+   background-color: #111111;
+}
+
+a:link {
+ font-weight: bold;
+ text-decoration: none;
+ color: #B7A5DF;
+ }
+a:visited {
+ font-weight: bold;
+ text-decoration: none;
+ color: #D4CDDC;
+ }
+a:hover, a:focus, a:active {
+ text-decoration: underline;
+ color: #9685BA;
+ }
 body{
-  background-color: black;
-  color: white;
-  font-family: sans-serif;
+  background-color: #4ad;
 }
+main{
+ /* backgroundcolor: #333; */
+  clear: both;
+  width: 550px;
+  height: 10px;
+  margin: 0 auto;
 
-#center{
+}
+nav{
+  border-bottom: solid pink 3px;
+}
+#content_area{
+  border-top: solid green 3px;
+  background-color: red;
+  height: 900px;
+}
+#salmon_banner{
+  background-color: blue;
+  haight: 500px;
   width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-
-}
-
-table{
-  margin: 10px;
-  padding: 20px;
-  border: solid 2px black;
 }
