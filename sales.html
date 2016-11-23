@@ -6,22 +6,37 @@
     <title>Sales</title>
   </head>
   <body>
-    <div id="content_area"></div>
-    <table id="salmon_table" >
-    <tbody id ="salmon_table_body"></tbody>
-  </table>
-
-      <form id="salmon_form">
-        <input type="text" placeholder="enter store name" name ="name">
-        <input type="text" placeholder="minimum customers per hour" name = "min">
-        <input type="text" placeholder="maximum customers per hour" name ="max">
-        <input type="text" placeholder="Averge Purchase" name = "avgSale">
-        <input type="submit" name = "StoreMaker">
-    </form>
-    <section id="hello_message"></section>
 
 
+    <main>
+       <nav>
+         <ul>
+           <li><a href=#home >HOME</a></li>
+           <li><a href="sales.html" >SALES</a></li>
+           <li><a href=#about >ABOUT</a></li>
+           <li><a href=#conact >CONTACT</a></li>
+           <li><img src="https://github.com/BillyDeeWilliams/lab_02/blob/thursdayInClass/assets/chinook.jpg?raw=true" height="40" id="nav_fish"</li>
+         </ul>
+         </nav>
+     <div id="content_area">
+       <div id="salmon_banner" ><h1>
+            </h1></div>
+      <div id = "salmon_table_div" >
+            <table id="salmon_table" >
+            <tbody id ="salmon_table_body"></tbody>
+          </table>
 
-    <script src="app.js" type="text/javascript"></script>
+              <form id="salmon_form">
+                <input type="text" placeholder="enter store name" name ="name">
+                <input type="text" placeholder="minimum customers per hour" name = "min">
+                <input type="text" placeholder="maximum customers per hour" name ="max">
+                <input type="text" placeholder="Averge Purchase" name = "avgSale">
+                <input type="submit" name = "StoreMaker">
+            </form>
+            <section id="hello_message"></section>
+          </div> <!--end of salmon table div -->
+       </div> <!--end of content_area -->
+       </main>
+       <script src="app.js" type="text/javascript"></script>
   </body>
 </html>
