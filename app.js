@@ -1,5 +1,5 @@
 'use strict';
-
+var globalCount = 0;
 var storeHours;
 storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm' ];
 var hours;
@@ -231,6 +231,33 @@ function buildFooter(){
 }
 function handleForm (event){
   event.preventDefault();
+  var name;
+  var min;
+  var max;
+  var avgSale;
+  name = event.target.name.value;
+  min = event.target.min.value;
+  max = event.target.max.value;
+  avgSale = event.target.avgSale.value;
+  var existingAlready = false;
+
+  for( var i = 0; i < collectionofStores.length; i++){ //check each of the existing stores
+    if( name === collectionofStores[i].name) { //if there is already a store with this name
+      collectionofStores[i].minHourlyCustos = min; //update the existing data
+      collectionofStores[i].maxHourlyCustos = max;
+      collectionofStores[i].avgPurchaseSize = avgSale;
+      existingAlready = true; // set control boolian to true
+    }
+  }
+  if (existingAlready === false){ // if no store was found, we need to make a new object for the new data
+    window['newStore' + globalCount] = new SalmonStore (name, min, max, avgSale);
+   /* above cited from: https://www.codecademy.com/en/forum_questions/51068e93f73ad4947a005629*/
+    collectionofStores.push(window['newStore' + globalCount]); //this is not ideal
+    globalCount++; //itterate global counter for next var name to hold  new store object data
+
+  }
+
+
 
   var salmonTable = document.getElementById('salmon_table');
   salmonTable.textContent = ''; //clears table
