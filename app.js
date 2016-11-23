@@ -224,7 +224,6 @@ function buildFooter(){
     footerCell.textContent = hourlyTotal; //store column sum in td cell
     console.log(footerCell , hourlyTotal);
     salmonRow.appendChild(footerCell); // append footer row with a data cell at a time
-
   }
 
   salmonFooter.appendChild(salmonRow);
