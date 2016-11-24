@@ -137,7 +137,7 @@ SalmonStore.prototype.lastRow = function(){
 
 //now we need to create instances of our stores and then call their row generatin methods to produce our table
 //then we will stype appropriately with CSS
-//finaly we will add a form where upon field containing the necessary property information may be submited to
+//finaly we will add a form where upon fields containing the necessary property information may be submited to
 //generate a new store or change store data and the row generating call will update in real time
 var collectionofStores = [];
 var pike = new SalmonStore ('1st and Pike', 23, 65, 6.3);
@@ -147,7 +147,6 @@ var capHill  = new SalmonStore('Capitol Hill', 20, 38, 2.3);
 var alki = new SalmonStore('Alki', 2, 16, 4.6);
 collectionofStores = [pike, seaTac, seattleCenter, capHill, alki];
 
-//later we can maeke similar happen individually as we want, or trigger then with a listener.
 // for now they are hoard coded into the following function
 function generateStoreTable() {
   pike.headerToHTML();
@@ -159,21 +158,16 @@ function generateStoreTable() {
 }
 
 generateStoreTable();
-//first table with urrent data is generated. a form is available below the table for input to change data
+//first table with current data is generated. a form is available below the table for input to change data
 //or create new instances of stares and then populate the table acordingly
-//=======================================================================================================================================================//
-//KVN structure convention
-//above is good, blow is under construction
-//======================================================================================================================================================//
-
 
 //lets use bottons to call our HTML generation
 var salmonForm = document.getElementById('salmon_form');
 salmonForm.addEventListener('submit', handleForm);
-//salmonForm point at the form we're working with. then we add an evenlistener to call handleform when triggered by submit
-//defin the handle function belwo and apass it a named event argument so we can refer to the properties of the event in real time
+//variable salmonForm now points at the form we're working with. then we add an evenlistener to call handleform when triggered by submit
+//define the handle function below and apass it a named event argument so we can refer to the properties of the event
 
-function buildHeader () {
+function buildHeader () { //generates the table header
   var table = document.getElementById('salmon_table');
   var tableHeader = document.createElement('thead');
   var tableRow = document.createElement('tr');
@@ -197,16 +191,14 @@ function buildHeader () {
 
 }
 
-function bodyBuilder (){
+function bodyBuilder (){ //generates the body of the table
 
   for(var i = 0; i < collectionofStores.length; i++){ //for as many stores as are in the collection
     collectionofStores[i].generateStoreDataTableRow();
   }
 }
 
-
-
-function buildFooter(){
+function buildFooter(){ // generates footer of table with totals
   var salmonTable = document.getElementById('salmon_table');
   var salmonFooter = document.createElement('tfoot');
   var salmonRow = document.createElement('tr');
@@ -229,6 +221,8 @@ function buildFooter(){
   salmonFooter.appendChild(salmonRow);
   salmonTable.appendChild(salmonFooter);
 }
+
+
 function handleForm (event){
   event.preventDefault();
   var name;
@@ -256,7 +250,6 @@ function handleForm (event){
     globalCount++; //itterate global counter for next var name to hold  new store object data
 
   }
-
 
 
   var salmonTable = document.getElementById('salmon_table');
