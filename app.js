@@ -222,6 +222,19 @@ function buildFooter(){ // generates footer of table with totals
   salmonTable.appendChild(salmonFooter);
 }
 
+function inputCheck (){
+  var inputName; // for now we are just going to make sure a name is entered,
+  /*var inputMin;  //later we will check if the input is a number
+  var inputmax;  // then we can check if this input for max is a number, AND is larger than the previous input for min
+  var inpuavgSale */ // we will do a data type check to be sure it is a number
+  inputName = this.name;
+  if (inputName === '' || inputName === false ){ //if the input is an empty string or non existant
+    return(false);
+  }
+  else {
+    return(true);
+  }
+}
 
 function handleForm (event){
   event.preventDefault();
@@ -240,10 +253,13 @@ function handleForm (event){
       collectionofStores[i].minHourlyCustos = min; //update the existing data
       collectionofStores[i].maxHourlyCustos = max;
       collectionofStores[i].avgPurchaseSize = avgSale;
-      existingAlready = true; // set control boolian to true
+      existingAlready = true; // set control boolian to true and proceed to call the function to render the table
     }
   }
-  if (existingAlready === false){ // if no store was found, we need to make a new object for the new data
+
+  existingAlready = inputCheck(); // check if the name input field has been populated *validate*
+
+  if (existingAlready === false){ // if no store was found, and the appropriate fields have data, we need to make a new object for the new data
     window['newStore' + globalCount] = new SalmonStore (name, min, max, avgSale);
    /* above cited from: https://www.codecademy.com/en/forum_questions/51068e93f73ad4947a005629*/
     collectionofStores.push(window['newStore' + globalCount]); //this is not ideal
